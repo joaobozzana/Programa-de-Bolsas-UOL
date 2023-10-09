@@ -15,6 +15,7 @@ Nele foram colocados os aquivos que foi pedido:
 ![Arquivos](/Sprint6/Laboratorios/Lab%20AWS%20S3/ArquivosBuckets.png)
 
 E por fim o site funcionando
+
 ![Site](/Sprint6/Laboratorios/Lab%20AWS%20S3/Site.png)
 
 ---
@@ -30,6 +31,7 @@ Foi proposto a seguinte consulta
 Onde foi utilizado o seguinte script
 
 ![Código](/Sprint6/Laboratorios/Lab%20AWS%20Athena/Codigo.png)
+
 Arquivo SQL: [Código em SQL](/Sprint6/Laboratorios/Lab%20AWS%20Athena/codigo.sql);
 
 Gerando o seguinte resultado:
