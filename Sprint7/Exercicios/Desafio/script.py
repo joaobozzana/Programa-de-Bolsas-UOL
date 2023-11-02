@@ -3,8 +3,8 @@ from datetime import date
 
 client = boto3.client(
     's3', 
-    aws_access_key_id = "AKIA4Q3QQNO5BW45FYGI",
-    aws_secret_access_key = "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",
+    aws_access_key_id = "AKIA4Q3QQNO5BW45FYGI", #Chave invalidada 
+    aws_secret_access_key = "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", #Chave invalidada 
 )
 
 today = date.today()
