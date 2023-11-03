@@ -1,0 +1,1 @@
+![Data & Analytics - PB - AWS 8/10](AWS8-10.jpg)

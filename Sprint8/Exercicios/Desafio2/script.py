@@ -5,6 +5,7 @@ import boto3
 from datetime import date
 import concurrent.futures
 import io 
+import json
 
 def lambda_handler(event, context):
  
@@ -31,7 +32,7 @@ def lambda_handler(event, context):
         return data
     
     filme = []
-
+    
     # O trecho de código utiliza um ThreadPoolExecutor com 10 threads para buscar informações de filmes em paralelo, acelerando o processo de coleta de dados da API.
     with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
         movie_ids = data['id'].tolist()
@@ -78,3 +79,7 @@ def lambda_handler(event, context):
         # Faça o upload do DataFrame particionado para o Amazon S3
         s3_client.put_object(Body = arquivo.getvalue(), Bucket = bucket, Key = target_path)
 
+    return {
+        'status code': 200,
+        'body': json.dumps(f"Funcionou")
+    }
