@@ -43,12 +43,11 @@ def lambda_handler(event, context):
         receita = data.get('revenue')
     
         if orcamento is not None and orcamento != 0 and receita is not None and receita != 0: # Filtro pra pegar somente oque tem orçamento e receita
-            filme.append({'id': 'id',
+            filme.append({'id': data['imdb_id'],
                           'lancamento': data['release_date'],
                           'orcamento': orcamento,
                           'receita': receita,
                           'avaliacao': data['vote_average']})
-            print({'id': id, 'orcamento': orcamento, 'receita': receita, 'avaliacao': data.get('vote_average')})
     
     # Variareis subir pro bucket
     camada = 'RAW'
