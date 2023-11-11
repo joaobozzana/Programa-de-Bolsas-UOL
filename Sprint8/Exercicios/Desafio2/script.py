@@ -22,7 +22,7 @@ def lambda_handler(event, context):
     df = pd.read_csv(objeto['Body'], sep="|")
     
     # Filtrar por Terror e Mistério
-    data = df[df['genero'].str.contains("Horror") & df['genero'].str.contains("Mystery")][['id', 'genero', 'anoLancamento']].drop_duplicates()
+    datacsv = df[df['genero'].str.contains("Horror")][['id', 'genero']].drop_duplicates()
     
     #Lida com a API do TMBD
     def get_movie_info(movie_id):
@@ -35,7 +35,7 @@ def lambda_handler(event, context):
     
     # O trecho de código utiliza um ThreadPoolExecutor com 10 threads para buscar informações de filmes em paralelo, acelerando o processo de coleta de dados da API.
     with concurrent.futures.ThreadPoolExecutor(max_workers=10) as executor:
-        movie_ids = data['id'].tolist()
+        movie_ids = datacsv['id'].tolist()
         results = list(executor.map(get_movie_info, movie_ids))
     
     for data in results:
@@ -43,11 +43,12 @@ def lambda_handler(event, context):
         receita = data.get('revenue')
     
         if orcamento is not None and orcamento != 0 and receita is not None and receita != 0: # Filtro pra pegar somente oque tem orçamento e receita
-            filme.append({'id': data['id'],
+            filme.append({'id': 'id',
                           'lancamento': data['release_date'],
                           'orcamento': orcamento,
                           'receita': receita,
                           'avaliacao': data['vote_average']})
+            print({'id': id, 'orcamento': orcamento, 'receita': receita, 'avaliacao': data.get('vote_average')})
     
     # Variareis subir pro bucket
     camada = 'RAW'
